@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools >=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geometric-ne"
+version = "0.0.1"
+
+description = "Geometric Neighbour Embeddings"
+
+authors = [
+  { name = "Michael Bleher", email = "mbleher@mathi.uni-heidelberg.de" },
+]
+
+license = { file = "LICENSE" }
+readme = "README.md"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}

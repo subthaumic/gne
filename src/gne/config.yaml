@@ -1,0 +1,64 @@
+# Source Geometry
+# NOTE: not sure if there is need for source_geometry config
+source_geometry:
+  # TODO: implement choice of predefined geometries via config
+  metric: 'euclidean' # 'euclidean' (currently no effect)
+
+# Target Geometry
+target_geometry:
+  # TODO: implement choice of predefined geometries via config
+  metric: 'euclidean' # 'euclidean' (currently no effect)
+  dimension: 2
+  initialization_method: 'PCA' # 'random', 'PCA', 'UMAP'
+
+# Source Complex
+source_complex:
+  creator_func: 'kNN' # 'kNN'. planned: 'VR'
+  k_neighbours: 4
+  max_dim: 2
+  weight_func: 'geometric' # 'geometric'. planned: 'topological'
+
+# Target Complex
+target_complex:
+  creator_func: 'kNN' # 'kNN'. planned: 'VR'
+  k_neighbours: 4
+  max_dim: 2
+  weight_func: 'geometric' # 'geometric'. planned: 'topological'
+
+# Loss
+loss:
+  loss_func: 'L2' # 'L2'. planned: 'Lp' (currently no effect)
+  lagrange_multipliers: [1.0, 1.0, 0.43, 0.12, 2.3e-02, 3.6e-03, 4.6e-04, 4.96e-05]
+
+# Training
+training:
+  epochs: 100
+  batch_size: -1 # -1 = auto, 0 = turn off, >0 = set batch size
+  # TODO: test '0 = turn off' (threw an error at some point)
+  # TODO: implement choice of optimizer via config
+  optimizer: 'SGD' # 'SGD', 'Riemannian SGD' (currently no effect)
+  learning_rate: 0.8
+  burnin: 0 # number of epochs reserved for burnin
+  # cuda: 0 # cuda not implemented
+
+# learning rate scheduler
+scheduler:
+  factor: 0.5
+  patience: 0
+  cooldown: 0
+
+# Early Stop
+earlystop:
+  quantile: 0.4 # quantile of change in loss that adds +1 to early stop count
+  lr_threshold: 0.1 # learning rate threshold below which early stop count increment
+  patience: 5 # number of stagnating epochs before triggering early stop
+
+# Output Configurations
+output:
+  interim_data_path: null
+  plot_loss: False
+
+## OLD CONFIGS, possibly needed at some later stage
+## Poincare model
+# epsilon:  1.e-5
+# sigma: 1.
